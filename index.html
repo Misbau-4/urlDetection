@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phishing URL Detector</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+  <div class="w-full max-w-2xl">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Batch URL Security Check</h1>
+      <p class="text-gray-600">Upload a CSV of URLs to classify them all at once</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-lg p-8">
+      <!-- CSV File Input -->
+      <div class="mb-6">
+        <label for="csvInput" class="block text-sm font-medium text-gray-700 mb-2">
+          Upload CSV of URLs
+        </label>
+        <input 
+          type="file" 
+          id="csvInput" 
+          accept=".csv"
+          class="w-full text-sm text-gray-700
+                 file:mr-4 file:py-2 file:px-4
+                 file:rounded-lg file:border-0
+                 file:text-sm file:font-semibold
+                 file:bg-blue-600 file:text-white
+                 hover:file:bg-blue-700
+                 focus:outline-none"
+        >
+      </div>
+
+      <!-- Process Button -->
+      <button 
+        id="processButton" 
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <span id="buttonText">Classify URLs</span>
+        <div id="loadingSpinner" class="hidden inline-block ml-2">
+          <div class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+        </div>
+      </button>
+
+      <!-- Results Table -->
+      <div id="resultArea" class="mt-6 hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">URL</th>
+              <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Status</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody" class="bg-white divide-y divide-gray-200">
+            <!-- Populated by script.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <p class="text-sm text-gray-500">
+        Always verify suspicious links before clicking.
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
