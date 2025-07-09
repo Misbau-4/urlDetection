@@ -1,13 +1,6 @@
-/**
- * Phishing URL Detector - Vanilla JavaScript
- *
- * This front-end implementation now integrates with the real
- * phishing-detection API and handles all exemplar responses.
- */
-
-// Get DOM elements (preserved from your original script) :contentReference[oaicite:0]{index=0}
-const urlInput = document.getElementById("urlInput");
-const checkButton = document.getElementById("checkButton");
+// DOM references :contentReference[oaicite:1]{index=1}
+const csvInput = document.getElementById("csvInput");
+const processButton = document.getElementById("processButton");
 const buttonText = document.getElementById("buttonText");
 const loadingSpinner = document.getElementById("loadingSpinner");
 const resultArea = document.getElementById("resultArea");
@@ -17,18 +10,12 @@ const resultBody = document.getElementById("resultBody");
 processButton.addEventListener("click", handleCsvProcessing);
 
 /**
- * Main function to handle URL checking
+ * Reads CSV, issues one API call per URL, and renders results.
  */
-async function handleUrlCheck() {
-  const url = urlInput.value.trim();
-
-  // Basic validation
-  if (!url) {
-    showError("Please enter a URL to check");
-    return;
-  }
-  if (!isValidUrl(url)) {
-    showError("Please enter a valid URL (e.g., https://example.com)");
+async function handleCsvProcessing() {
+  const file = csvInput.files[0];
+  if (!file) {
+    alert("Please select a CSV file first.");
     return;
   }
 
